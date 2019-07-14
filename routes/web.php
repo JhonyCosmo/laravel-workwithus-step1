@@ -18,3 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/pessoas/criar','PessoasController@create')->name('form_criar_pessoa');
+Route::post('/pessoas/criar','PessoasController@store');
+Route::get('/pessoas','PessoasController@index')->name('listar_pessoas');

@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pessoa extends Model
 {
-    protected $table = 'series';
+    protected $table = 'pessoas';
     public $timestamps=false;
-    protected $fillable=['nome'];
+    protected $fillable=['nome','fone','email'];
     public function contas(){
         return $this->hasMany(Conta::class);
     }

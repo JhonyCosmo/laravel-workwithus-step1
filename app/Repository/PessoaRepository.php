@@ -6,14 +6,14 @@ use App\Pessoa;
 use Illuminate\Support\Facades\DB;
 
 
-class PessoaRepository implements iRepository
+class PessoaRepository 
 {
-    public function create(string $nomeSerie,string $email,string $fone,$contas):Pessoa{
+    public function create(string $nome,string $email,string $fone):Pessoa{
 
         $pessoa=null;
         DB::beginTransaction();
         $pessoa=Pessoa::create([
-            'nome'=>$nomeSerie,
+            'nome'=>$nome,
             'email'=>$email,
             'fone'=>$fone
         ]);
@@ -23,4 +23,14 @@ class PessoaRepository implements iRepository
         DB::commit();
         return $pessoa;
     }
+
+//    public function create(Pessoa $pessoa):Pessoa{
+//
+//        $pessoa=null;
+//        DB::beginTransaction();
+//        $pessoa=Pessoa::create($pessoa);
+//        //'contas'=>$contas
+//        DB::commit();
+//        return $pessoa;
+//    }
 }

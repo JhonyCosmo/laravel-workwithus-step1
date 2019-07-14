@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PessoasFormRequest;
+use App\Pessoa;
+use App\Repository\PessoaRepository;
 use Illuminate\Http\Request;
 
 class PessoasController extends Controller
@@ -18,19 +21,28 @@ class PessoasController extends Controller
         return view('pessoas.create');
     }
 
-    public function store(SeriesFormRequest $request,CriadorDeSerie $criadorDeSerie)
+    public function store(PessoasFormRequest $request,PessoaRepository $repository)
     {
-        $serie=$criadorDeSerie->criarSerie(
+//        $pessoa= new Pessoa();
+//        $pessoa->nome=$request->nome;
+//        $pessoa->email=$request->nome;
+//        $pessoa->fone=$request->nome;
+        //$pessoa->contas=$request->contas;
+
+
+        $pessoa = $repository->create(
             $request->nome,
-            $request->qtd_temporadas,
-            $request->ep_por_temporada);
+            $request->email,
+            $request->fone);
+
+//        $pessoa = $repository->create($pessoa);
 
         $request->session()
             ->flash(
                 'mensagem',
-                "Série {$serie->id} criada com sucesso {$serie->nome} e suas temporadas e episodios foram criadas");
+                "Registro salvo com sucesso");
 
-        return redirect()->route('listar_series');
+        return redirect()->route('listar_pessoas');
     }
 
     public function  destroy(Request $request,RemovedorSerie $removedor):string{
@@ -42,5 +54,12 @@ class PessoasController extends Controller
                 'mensagem',
                 "Série {$request->id} - {$nomeSerie} removida com sucesso ");
         return redirect()->route('listar_series');
+    }
+    public function editaNome(int $pessoaId,Request $request)
+    {
+        $novoNome=$request->nome;
+        $pessoa=Pessoa::find($pessoaId);
+        $pessoa->nome=$novoNome;
+        $pessoa->save();
     }
 }
