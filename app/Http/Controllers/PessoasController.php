@@ -23,19 +23,10 @@ class PessoasController extends Controller
 
     public function store(PessoasFormRequest $request,PessoaRepository $repository)
     {
-//        $pessoa= new Pessoa();
-//        $pessoa->nome=$request->nome;
-//        $pessoa->email=$request->nome;
-//        $pessoa->fone=$request->nome;
-        //$pessoa->contas=$request->contas;
-
-
-        $pessoa = $repository->create(
+       $repository->create(
             $request->nome,
             $request->email,
             $request->fone);
-
-//        $pessoa = $repository->create($pessoa);
 
         $request->session()
             ->flash(
@@ -45,7 +36,8 @@ class PessoasController extends Controller
         return redirect()->route('listar_pessoas');
     }
 
-    public function  destroy(Request $request,RemovedorSerie $removedor):string{
+    public function  destroy(Request $request,RemovedorSerie $removedor):string
+    {
         //Removendo manualmente os registros viculados a serie
         //Retornando a serie
         $nomeSerie=$removedor->removerSerie($request->id);

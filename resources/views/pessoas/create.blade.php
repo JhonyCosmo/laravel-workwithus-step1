@@ -1,19 +1,12 @@
 @extends('layouts.app')
 
-{{--@section('cabecalho')--}}
-{{--    Adicionar Série--}}
-{{--@endsection--}}
-
-
-
-
 @section('content')
 
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Pessoa') }}</div>
+                    <div class="card-header">{{ __('Cadastro de Pessoa') }}</div>
                     <div class="card-body">
 
                         @if ($errors->any())
@@ -49,7 +42,9 @@
 
                             </div>
 
-                            <button class="btn btn-primary mt-2">Adicionar</button>
+                            <a href="{{ route( 'listar_pessoas')}}" class="btn btn-dark mt-2">Voltar</a>
+                            <button class="btn btn-dark mt-2">Adicionar</button>
+
                         </form>
 
                     </div>

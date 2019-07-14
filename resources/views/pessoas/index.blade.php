@@ -15,10 +15,6 @@
                    <div class="card-header">{{ __('Pessoas') }}</div>
                    <div class="card-body">
 
-                       @auth
-                           <a href="{{ route('form_criar_pessoa') }}" class="btn btn-dark mb-2">Adicionar</a>
-                       @endauth
-
                        <ul class="list-group">
                             @foreach($pessoas as $pessoa)
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -58,6 +54,9 @@
                             @endforeach
                        </ul>
 
+                       @auth
+                           <a href="{{ route('form_criar_pessoa') }}" class="btn btn-dark mt-2">Adicionar</a>
+                       @endauth
 
                    </div>
                </div>

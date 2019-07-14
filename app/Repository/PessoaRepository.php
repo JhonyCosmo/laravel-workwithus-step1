@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 class PessoaRepository 
 {
-    public function create(string $nome,string $email,string $fone):Pessoa{
-
+    public function create(string $nome,string $email,string $fone):Pessoa
+    {
         $pessoa=null;
         DB::beginTransaction();
         $pessoa=Pessoa::create([
@@ -17,20 +17,7 @@ class PessoaRepository
             'email'=>$email,
             'fone'=>$fone
         ]);
-
-
-        //'contas'=>$contas
         DB::commit();
         return $pessoa;
     }
-
-//    public function create(Pessoa $pessoa):Pessoa{
-//
-//        $pessoa=null;
-//        DB::beginTransaction();
-//        $pessoa=Pessoa::create($pessoa);
-//        //'contas'=>$contas
-//        DB::commit();
-//        return $pessoa;
-//    }
 }
