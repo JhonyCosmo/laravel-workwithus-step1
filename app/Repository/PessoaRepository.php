@@ -20,4 +20,11 @@ class PessoaRepository
         DB::commit();
         return $pessoa;
     }
+
+    public function delete(int $id){
+        DB::transaction(function () use($id){
+            $pessoa=Pessoa::find($id);
+            $pessoa->delete();
+        });
+    }
 }

@@ -1,12 +1,8 @@
 @extends('layouts.app')
 
-{{--@section('cabecalho')--}}
-{{--    Séries--}}
-{{--@endsection--}}
-
 @section('content')
 
-{{--   @include('mensagem',['mensagem'=>$mensagem])--}}
+   @include('mensagem',['mensagem'=>$mensagem])
 
    <div class="container">
        <div class="row justify-content-center">
@@ -33,7 +29,6 @@
                                     @foreach($contas as $conta)
 
                                         <tr>
-{{--                                            <th scope="row">1</th>--}}
                                             <td>{{$conta->resumo}}</td>
                                             <td>{{$conta->titulo}}</td>
                                             <td>{{$conta->vencimento}}</td>
@@ -52,7 +47,7 @@
                                                 </a>
 
                                                 {{-- deletar--}}
-                                                <form method="post" action="/pessoas/{{ $conta->id }}"
+                                                <form method="post" action="/contas/{{ $conta->id }}"
                                                       onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($conta->nome) }}?')">
                                                     @csrf
                                                     @method('DELETE')
@@ -66,7 +61,6 @@
 
                                             </td>
                                         </tr>
-
 
                                     @endforeach
 

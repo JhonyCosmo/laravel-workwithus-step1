@@ -36,17 +36,16 @@ class PessoasController extends Controller
         return redirect()->route('listar_pessoas');
     }
 
-    public function  destroy(Request $request,RemovedorSerie $removedor):string
+    public function  destroy(int $pessoaId,PessoaRepository $repository,Request $request):string
     {
-        //Removendo manualmente os registros viculados a serie
-        //Retornando a serie
-        $nomeSerie=$removedor->removerSerie($request->id);
+        $repository->delete($pessoaId);
         $request->session()
             ->flash(
                 'mensagem',
-                "Série {$request->id} - {$nomeSerie} removida com sucesso ");
-        return redirect()->route('listar_series');
+                "Registro deletado com sucesso");
+        return $this->index($request);
     }
+
     public function editaNome(int $pessoaId,Request $request)
     {
         $novoNome=$request->nome;

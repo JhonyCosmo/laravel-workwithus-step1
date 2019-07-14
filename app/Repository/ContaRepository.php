@@ -31,9 +31,8 @@ class ContaRepository
     }
     public function delete(int $id){
         DB::transaction(function () use($id){
-            $serie=Serie::find($id);
-            //$this->removerTemporadas($serie);
-            $serie->delete();
+            $conta=Conta::find($id);
+            $conta->delete();
         });
     }
 }
